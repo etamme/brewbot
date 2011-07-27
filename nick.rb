@@ -41,8 +41,11 @@ class Nick
   def execute(m,cmdstr)
     output=""
     cmd,val = cmdstr.split(' ',2)
-    #m.reply "cmd=#{cmd} val=#{val}"
-    
+    if val==nil
+      val=cmd
+      cmd='get'
+    end
+ 
     if(cmd=='reload')
       @nickData={}
       @nameIndex={}
