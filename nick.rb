@@ -66,10 +66,14 @@ class Nick
         output="Show me yours first."
       end
     elsif(cmd=='set')
-      @nickData[m.user.nick]=val
-      @nameIndex[val]=m.user.nick
-      storeData()
-      output="Thanks "+m.user.nick+".  Now I know who you are."
+      if val==m.user.nick
+        output="#{m.user.nick}, I dont think so.  Try again"
+      else
+        @nickData[m.user.nick]=val
+        @nameIndex[val]=m.user.nick
+        storeData()
+        output="Thanks "+m.user.nick+".  Now I know who you are."
+      end
     else
       output="What's that now?  I don't understand."
     end
