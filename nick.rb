@@ -20,6 +20,8 @@ class Nick
   def loadData()
     $/="\n\n"
     dataArray=[]
+    @nickData={}
+    @nameIndex={}
     File.open("./nickData.yaml", "r").each do |object|
       dataArray << YAML::load(object)
     end
@@ -29,6 +31,11 @@ class Nick
         @nameIndex[v]=k
       end
     end
+  end
+
+  def initialize(*args)
+    super
+    loadData()
   end
 
   def execute(m,cmdstr)

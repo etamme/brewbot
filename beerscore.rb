@@ -20,11 +20,12 @@ class Beerscore
     data = resp.body
     if data.include? 'No results'
       output="#{m.user.nick}, Sorry.  I couldn't find #{beer}."
+    elsif data.include? 'REFINE'
+      output="#{m.user.nick}, Sorry.  I couldn't find #{beer}. Try refining your search."
     else
       # we convert the returned JSON data to native Ruby
       # data structure - a hash
       result = JSON.parse(data)
-      # if the hash has 'Error' as a key, we raise an error
       beer={}
       beer=result['beer'][0]
       output="#{m.user.nick}, #{beer['name']}: #{beer['url']} score: #{beer['score']} style score: #{beer['stylescore']}"
