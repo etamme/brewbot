@@ -1,0 +1,34 @@
+#!/usr/local/bin/ruby
+
+require 'cinch'
+require 'csv'
+require 'uri'
+require 'net/http'
+require 'json'
+
+class Beerscore
+  include Cinch::Plugin
+
+  match /beerscore (.+)/
+
+  @yeastData={}
+
+  def execute(m,beer)
+    baseuri="http://caedmon.net/beerscore/"
+    uri = URI.escape("#{baseuri}#{beer}")
+    resp=Net::HTTP.get_response(URI.parse(uri))
+    data = resp.body
+    if data.include? 'No results'
+      output="#{m.user.nick}, Sorry.  I couldn't find #{beer}."
+    else
+      # we convert the returned JSON data to native Ruby
+      # data structure - a hash
+      result = JSON.parse(data)
+      # if the hash has 'Error' as a key, we raise an error
+      beer={}
+      beer=result['beer'][0]
+      output="#{m.user.nick}, #{beer['name']}: #{beer['url']} score: #{beer['score']} style score: #{beer['stylescore']}"
+    end
+    m.reply output 
+  end
+end
