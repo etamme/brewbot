@@ -41,7 +41,7 @@ class Nick
   def execute(m,cmdstr)
     output=""
     cmd,val = cmdstr.split(' ',2)
-    if val==nil
+    if(val==nil && cmd!='reload')
       val=cmd
       cmd='get'
     end
@@ -63,7 +63,7 @@ class Nick
           output="Sorry.  I don't know who that is."
         end 
       else
-        output="Show me yours first."
+        output="Show me yours first. !nick set your name"
       end
     elsif(cmd=='set')
       if val==m.user.nick
