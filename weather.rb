@@ -1,9 +1,9 @@
 #!/usr/local/bin/ruby
 require 'net/http'
-require 'net/http'
-require 'hpricot'
 require 'uri'
 require 'cinch'
+require 'rubygems'
+require 'xmlsimple'
 
 class Weather
   include Cinch::Plugin
@@ -14,17 +14,18 @@ class Weather
     location=location.gsub(' ','+')
     xml=Net::HTTP.get(URI.parse("http://www.google.com/ig/api?weather=#{location}"))
 
-    doc = Hpricot::XML(xml)
-   (doc/:current_conditions).each do |status|
-     first=true
-     (status/"*").each do |el|
-       if first
-         first=false
-       else
-         m.reply el.to_s
-             #m.reply "#{el}: #{status.at(el).innerHTML}"
-       end
-     end
-    end
+   data = XmlSimple.xml_in(xml)
+   weather = data["weather"][0]
+   forcast_info=weather["forecast_information"][0]
+   conditions=weather["current_conditions"][0]
+   details=weather["forecast_conditions"][0]
+   
+   city=forcast_info["city"][0]["data"]
+   ccond=conditions["condition"][0]["data"]
+   ctemp=conditions["temp_f"][0]["data"]
+   chum=conditions["humidity"][0]["data"]
+   low=details["low"][0]["data"]
+   high=details["high"][0]["data"]
+   m.reply "#{city}: #{ccond} #{ctemp}F #{chum} low: #{low} high: #{high}"
   end
 end

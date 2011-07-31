@@ -5,14 +5,15 @@ require './yeast.rb'
 require './ratebeer.rb'
 require './ping.rb'
 require './slap.rb'
+require './weather.rb'
 
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.channels = ["#homebrewtalk.com"]
 #    c.channels = ["#fasd"]
-    c.nick = "brewbot"
-    c.plugins.plugins = [Nick,Yeast,Ratebeer,Ping,Slap]
+    c.nick = "homebrewbot"
+    c.plugins.plugins = [Nick,Yeast,Ratebeer,Ping,Slap,Weather]
   end
 end
 
