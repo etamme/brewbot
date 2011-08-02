@@ -7,6 +7,7 @@ require './ping.rb'
 require './slap.rb'
 require './weather.rb'
 require './tinyurl.rb'
+require './seen.rb'
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -14,7 +15,7 @@ bot = Cinch::Bot.new do
     c.channels = ["#homebrewtalk.com"]
 #    c.channels = ["#fasd"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [Nick,Yeast,Ratebeer,Ping,Slap,Weather,Tinyurl]
+    c.plugins.plugins = [Nick,Yeast,Ratebeer,Ping,Slap,Weather,Tinyurl,Seen]
   end
 end
 
