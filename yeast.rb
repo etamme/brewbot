@@ -15,6 +15,7 @@ class Yeast
   def reloadData()
     @yeastData={}
     CSV.foreach("./YeastBot.csv") do |row|
+      puts row.inspect
       @yeastData[row[0]]=row[1]+" - "+row[2]+", "+row[3]
     end
   end

@@ -7,9 +7,9 @@ require 'uri'
 
 class Tinyurl
   include Cinch::Plugin
-  match(/(http.+)/,{:use_prefix => false})
+  match(/tiny (http.+)/)
   def execute(m,url)
-     if(url.length>65 and (!url.include?("tinyurl")))
+     if(!url.include?("tinyurl"))
        tinyurl=Net::HTTP.get(URI.parse("http://tinyurl.com/api-create.php?url=#{url}"))
        m.reply tinyurl
      end
