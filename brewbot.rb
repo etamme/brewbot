@@ -13,8 +13,8 @@ require './convert.rb'
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
-#    c.channels = ["#homebrewtalk.com"]
-    c.channels = ["#fasd"]
+    c.channels = ["#homebrewtalk.com"]
+#    c.channels = ["#fasd"]
     c.nick = "homebrewbot"
     c.plugins.plugins = [Nick,GSYeast,Ratebeer,Ping,Slap,Weather,Tinyurl,Seen,Convert]
   end

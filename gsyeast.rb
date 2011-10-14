@@ -22,7 +22,7 @@ class GSYeast
   def buildIndex()
     @index={}
     for row in 1..@ws.num_rows
-      @index[@ws[row, 1]]=row         
+      @index[@ws[row, 1].upcase]=row         
     end
   end
 
@@ -36,6 +36,10 @@ class GSYeast
 
   def initialize(*args)
     super
+    @key="0AmRc5_x3ehAfdFhBQ3pmczhqdHUtbmFONUYyZzVEY0E"
+    @user="hbtbrewbot@gmail.com"
+    @pass=""
+    
     # these are the current columns we are using - in order
     # MFG#,lab,product name, species, brewery source, temp range, attenuation range, flocculation, alcohol tolerance, pitching/ferm notes, notes, styles, same as, available, citation
     @map={} 
@@ -55,9 +59,6 @@ class GSYeast
     @map['AVAIL']=14
     @map['CITE']=15
 
-    @key="0AmRc5_x3ehAfdFhBQ3pmczhqdHUtbmFONUYyZzVEY0E"
-    @user="foo@gmail.com"
-    @pass="pass"
     @session=nil
     @ws=nil
     @index={}
