@@ -2,6 +2,7 @@
 require "rubygems"
 require "google_spreadsheet"
 require 'cinch'
+require 'yaml'
 
 class GSYeast
   include Cinch::Plugin
@@ -36,9 +37,18 @@ class GSYeast
 
   def initialize(*args)
     super
-    @key="0AmRc5_x3ehAfdFhBQ3pmczhqdHUtbmFONUYyZzVEY0E"
-    @user="hbtbrewbot@gmail.com"
-    @pass=""
+    # load config from yaml file
+    @yeast_config=[]
+    File.open('gsyeast.yaml','r').each do |object|
+      @yeast_config << YAML::load(object)
+    end
+    @user=@yeast_config.first['user']
+    @pass=@yeast_config.first['pass']
+    @key=@yeast_config.first['key']
+
+    #@key="0AmRc5_x3ehAfdFhBQ3pmczhqdHUtbmFONUYyZzVEY0E"
+    #@user="hbtbrewbot@gmail.com"
+    #@pass=""
     
     # these are the current columns we are using - in order
     # MFG#,lab,product name, species, brewery source, temp range, attenuation range, flocculation, alcohol tolerance, pitching/ferm notes, notes, styles, same as, available, citation
