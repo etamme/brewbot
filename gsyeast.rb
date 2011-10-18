@@ -44,11 +44,7 @@ class GSYeast
     end
     @user=@yeast_config.first['user']
     @pass=@yeast_config.first['pass']
-    @key=@yeast_config.first['key']
-
-    #@key="0AmRc5_x3ehAfdFhBQ3pmczhqdHUtbmFONUYyZzVEY0E"
-    #@user="hbtbrewbot@gmail.com"
-    #@pass=""
+    @key=@yeast_config.first['key'] 
     
     # these are the current columns we are using - in order
     # MFG#,lab,product name, species, brewery source, temp range, attenuation range, flocculation, alcohol tolerance, pitching/ferm notes, notes, styles, same as, available, citation
