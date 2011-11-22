@@ -4,6 +4,7 @@ require 'cinch'
 
 class Slap
   include Cinch::Plugin
+  @help="!slap"
   match(/slap (.+)/)#,{:use_prefix => false})
   def execute(m,user)
       if m.user.nick=="lirakis"

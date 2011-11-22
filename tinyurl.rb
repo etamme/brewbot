@@ -7,6 +7,7 @@ require 'uri'
 
 class Tinyurl
   include Cinch::Plugin
+  @help="!tiny"
   match(/tiny (http.+)/)
   def execute(m,url)
      if(!url.include?("tinyurl"))

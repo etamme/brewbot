@@ -7,7 +7,7 @@ require 'xmlsimple'
 
 class Weather
   include Cinch::Plugin
-
+  @help="!weather"
   match /weather (.+)/
 
   def execute(m,location)

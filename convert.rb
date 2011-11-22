@@ -5,6 +5,7 @@ require 'uri'
 
 class Convert
   include Cinch::Plugin
+  @help="!convert"
   match(/convert (.+)/)
   def execute(m,arg)
        lhs=""

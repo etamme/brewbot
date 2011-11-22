@@ -5,7 +5,7 @@ require 'cinch'
 class Nick
 
   include Cinch::Plugin
-
+  @help="!nick"
   match /nick (.+)/ 
   @nickData={}
   @nameIndex={}

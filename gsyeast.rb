@@ -6,7 +6,7 @@ require 'yaml'
 
 class GSYeast
   include Cinch::Plugin
-
+  @help="!yeast"
   match /yeast (.+)/
 
     def reloadData()
@@ -113,14 +113,17 @@ class GSYeast
   def execute(m,yeast)
     yeast,cmd = yeast.split(' ')
     yeast.upcase!
+    if yeast=='HELP'
+       cmd=yeast
+    end
     if cmd!=nil
       cmd.upcase!
     end
-    puts "got #{yeast} -  #{cmd}"
+    puts "got #{yeast} - #{cmd}"
     #puts @index
     if yeast=="RELOAD"
       reloadData()
-    elsif getRow(yeast) != nil
+    elsif getRow(yeast) != nil || yeast=='HELP'
       m.reply "#{m.user.nick}, #{yeast}: #{getYeast(yeast,cmd)}"
     else
       m.reply "#{m.user.nick}, you be crazy fool. #{yeast} doesn't exist!"

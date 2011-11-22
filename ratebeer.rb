@@ -9,6 +9,7 @@ require 'uri'
 
 class Ratebeer
   include Cinch::Plugin
+  @help="!beerscore"
   match /beerscore (.+)/
   def execute(m,beer)
     res=Net::HTTP.post_form(URI.parse('http://www.ratebeer.com/findbeer.asp'),{'BeerName' => beer})
