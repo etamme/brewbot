@@ -8,6 +8,8 @@ require 'xmlsimple'
 class Twitter
   include Cinch::Plugin
 
+  @help="!twitter"
+
   match /twitter (.+)/
 
   def execute(m,screenname)
