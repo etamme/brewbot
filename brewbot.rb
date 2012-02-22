@@ -9,14 +9,15 @@ require './weather.rb'
 require './tinyurl.rb'
 require './seen.rb'
 require './convert.rb'
+require './twitter.rb'
 
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
-#    c.channels = ["#homebrewtalk.com"]
-    c.channels = ["#fasd"]
+    c.channels = ["#homebrewtalk.com"]
+#    c.channels = ["#fasd"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GSYeast,Seen,Convert]
+    c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GSYeast,Seen,Convert,Twitter]
   end
   
   on :message, "!help" do |m|

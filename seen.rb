@@ -11,7 +11,11 @@ class Seen
   
   def initialize(*args)
     super
-    @last= YAML.load_file( 'seen.yaml' )
+    @last=YAML.load_file( 'seen.yaml')
+    puts "@last is #{@last}"
+    if(@last==nil)
+      @last={}
+    end
   end
 
 

@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'cinch'
 require 'net/http'
-require 'net/http'
+require 'iconv'
 require 'hpricot'
 require 'uri'
 
@@ -12,8 +12,9 @@ class Ratebeer
   @help="!beerscore"
   match /beerscore (.+)/
   def execute(m,beer)
-    res=Net::HTTP.post_form(URI.parse('http://www.ratebeer.com/findbeer.asp'),{'BeerName' => beer})
-    doc=Hpricot(res.body)
+    page=Net::HTTP.post_form(URI.parse('http://www.ratebeer.com/findbeer.asp'),{'BeerName' => beer})
+    body=page.body.gsub(/[\x80-\xff]/,"")
+    doc = Hpricot(body)
     total=0
     (doc/"table.results//tr").each do |row|
         score=""
