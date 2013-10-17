@@ -1,31 +1,43 @@
 #!/usr/local/bin/ruby
-require 'net/http'
-require 'uri'
 require 'cinch'
 require 'rubygems'
-require 'xmlsimple'
+require 'yaml'
+require 'wunderground'
 
 class Weather
   include Cinch::Plugin
   @help="!weather"
   match /weather (.+)/
 
-  def execute(m,location)
-    location=location.gsub(' ','+')
-    xml=Net::HTTP.get(URI.parse("http://www.google.com/ig/api?weather=#{location}"))
+  def initialize(*args)
+    super
+    # load config from yaml file
+    @weather_config=[]
+    File.open('weather.yaml','r').each do |object|
+      @weather_config << YAML::load(object)
+    end
+    @key=@weather_config.first['key']
+  end
 
-   data = XmlSimple.xml_in(xml)
-   weather = data["weather"][0]
-   forcast_info=weather["forecast_information"][0]
-   conditions=weather["current_conditions"][0]
-   details=weather["forecast_conditions"][0]
-   
-   city=forcast_info["city"][0]["data"]
-   ccond=conditions["condition"][0]["data"]
-   ctemp=conditions["temp_f"][0]["data"]
-   chum=conditions["humidity"][0]["data"]
-   low=details["low"][0]["data"]
-   high=details["high"][0]["data"]
-   m.reply "#{city}: #{ccond} #{ctemp}F #{chum} low: #{low} high: #{high}"
+  def execute(m,location)
+    location=location.gsub(' ','_')
+
+    wunder_api = Wunderground.new(@key)
+    weather = wunder_api.conditions_for(location)
+
+    if (weather['response']['results'] != nil)
+      location = weather['response']['results'][0]['zmw']
+      weather = wunder_api.conditions_for(location)
+    end
+
+    current = weather['current_observation']
+
+    city = current['display_location']['full']
+    ccond = current['weather']
+    ctemp = current['temperature_string']
+    chum = current['relative_humidity']
+    url = current['forecast_url']
+    m.reply "#{city}: #{ccond}, #{ctemp} with #{chum} relative humidity."
+    m.reply "See the forecast: #{url}?apiref=20612905a9c0054a"
   end
 end
