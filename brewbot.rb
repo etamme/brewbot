@@ -21,6 +21,13 @@ bot = Cinch::Bot.new do
   end
   
   on :message, "!help" do |m|
+    if(m.bot.nick != "homebrewbot")
+      if(m.bot.user_list.find("homebrewbot"))
+        return 0
+      else
+        m.bot.nick="homebrewbot"
+      end
+    end
     @help=[]
     @bot.plugins.each do |plugin|
       help = plugin.class.instance_variable_get(:@help)
