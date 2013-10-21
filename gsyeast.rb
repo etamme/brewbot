@@ -111,6 +111,14 @@ class GSYeast
   end
 
   def execute(m,yeast)
+    if(m.bot.nick != "homebrewbot")
+      if(m.bot.user_list.find("homebrewbot"))
+        return 0
+      else 
+        m.bot.nick="homebrewbot"
+      end
+    end
+
     yeast,cmd = yeast.split(' ')
     yeast.upcase!
     if yeast=='HELP'

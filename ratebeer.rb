@@ -12,6 +12,14 @@ class Ratebeer
   @help="!beerscore"
   match /beerscore (.+)/
   def execute(m,beer)
+    if(m.bot.nick != "homebrewbot")
+      if(m.bot.user_list.find("homebrewbot"))
+        return 0
+      else
+        m.bot.nick="homebrewbot"
+      end
+    end
+
     page=Net::HTTP.post_form(URI.parse('http://www.ratebeer.com/findbeer.asp'),{'BeerName' => beer})
     body=page.body.gsub(/[\x80-\xff]/,"")
     doc = Hpricot(body)

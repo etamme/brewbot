@@ -22,6 +22,14 @@ class Weather
   end
 
   def execute(m,location)
+    if(m.bot.nick != "homebrewbot")
+      if(m.bot.user_list.find("homebrewbot"))
+        return 0
+      else
+        m.bot.nick="homebrewbot"
+      end
+    end
+
     location=location.gsub(' ','_')
 
     wunder_api = Wunderground.new(@key)

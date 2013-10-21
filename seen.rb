@@ -44,6 +44,14 @@ class Seen
 
 
   def execute(m,arg)
+    if(m.bot.nick != "homebrewbot")
+      if(m.bot.user_list.find("homebrewbot"))
+        return 0
+      else
+        m.bot.nick="homebrewbot"
+      end
+    end
+
      if( arg =~ /^!seen (.+)$/ )
        curtime=Time.now()
        if @last[$1.downcase] != nil

@@ -15,9 +15,9 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.channels = ["#homebrewtalk.com"]
-#    c.channels = ["#fasd"]
+#    c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GSYeast,Seen,Convert,Twitter]
+    c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GSYeast,Seen,Convert]
   end
   
   on :message, "!help" do |m|
