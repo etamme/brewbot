@@ -1,5 +1,7 @@
 #!/usr/local/bin/ruby
 require 'cinch'
+require 'net/http'
+require 'uri'
 require 'rubygems'
 require 'yaml'
 require 'wunderground'
@@ -36,8 +38,8 @@ class Weather
     ccond = current['weather']
     ctemp = current['temperature_string']
     chum = current['relative_humidity']
-    url = current['forecast_url']
-    m.reply "#{city}: #{ccond}, #{ctemp} with #{chum} relative humidity."
-    m.reply "See the forecast: #{url}?apiref=20612905a9c0054a"
+    url = current['forecast_url'] + "?apiref=20612905a9c0054a"
+    tinyurl=Net::HTTP.get(URI.parse("http://tinyurl.com/api-create.php?url=#{url}"))
+    m.reply "#{city}: #{ccond}, #{ctemp} with #{chum} relative humidity. See the forecast: #{tinyurl}"
   end
 end
