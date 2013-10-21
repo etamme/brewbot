@@ -1,6 +1,6 @@
 #!/usr/local/bin/ruby
 require "rubygems"
-require "google_spreadsheet"
+require "google_drive"
 require 'cinch'
 require 'yaml'
 
@@ -68,7 +68,7 @@ class GSYeast
     @session=nil
     @ws=nil
     @index={}
-    @session = GoogleSpreadsheet.login(@user,@pass)
+    @session = GoogleDrive.login(@user,@pass)
     reloadData()
   end
 
