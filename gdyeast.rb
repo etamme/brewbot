@@ -4,7 +4,7 @@ require "google_drive"
 require 'cinch'
 require 'yaml'
 
-class GSYeast
+class GDYeast
   include Cinch::Plugin
   @help="!yeast"
   match /yeast (.+)/
@@ -23,7 +23,7 @@ class GSYeast
   def buildIndex()
     @index={}
     for row in 1..@ws.num_rows
-      @index[@ws[row, 1].upcase]=row         
+      @index[@ws[row, 1].upcase]=row
     end
   end
 
@@ -39,16 +39,16 @@ class GSYeast
     super
     # load config from yaml file
     @yeast_config=[]
-    File.open('gsyeast.yaml','r').each do |object|
+    File.open('gdrive.yaml','r').each do |object|
       @yeast_config << YAML::load(object)
     end
     @user=@yeast_config.first['user']
     @pass=@yeast_config.first['pass']
-    @key=@yeast_config.first['key'] 
-    
+    @key=@yeast_config.first['yeast_key']
+
     # these are the current columns we are using - in order
     # MFG#,lab,product name, species, brewery source, temp range, attenuation range, flocculation, alcohol tolerance, pitching/ferm notes, notes, styles, same as, available, citation
-    @map={} 
+    @map={}
     @map['MFG']=1
     @map['LAB']=2
     @map['PRODUCT']=3
