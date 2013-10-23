@@ -15,8 +15,8 @@ require './twitter.rb'
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
-#    c.channels = ["#homebrewtalk.com"]
-    c.channels = ["#brewbottest"]
+    c.channels = ["#homebrewtalk.com"]
+#    c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
     c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GDYeast,GDHops,Seen,Convert]
   end
