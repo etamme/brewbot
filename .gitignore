@@ -1,3 +1,4 @@
 #YAML Files
 *.yaml
 nohup.out
+*~
