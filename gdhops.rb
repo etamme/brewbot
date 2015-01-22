@@ -80,9 +80,9 @@ class GDHops
            end
 
            if data==""
-             data="#{tag}#{@ws[row,@map[k]]}"
+             data="#{tag}#{@ws[row,@map[k]]};"
            else
-            data="#{data} #{tag}#{@ws[row,@map[k]]}"
+            data="#{data} #{tag}#{@ws[row,@map[k]]};"
            end
          end
        end
