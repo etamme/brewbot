@@ -68,7 +68,7 @@ class GDHops
     row=getRow(hops)
     data=""
     # our default set of columns to return, along with their abbreviatted display elements.
-    default={'NAME'=>'','ORIGIN'=>'origin:','TYPE'=>'type:','AROMA'=>'aroma:','AA_RANGE'=>'AA:','SUBS'=>'subs:','NOTES'=>'notes:'}
+    default={'NAME'=>'','ORIGIN'=>'Origin:','TYPE'=>'Type:','AROMA'=>'Aroma:','AA_RANGE'=>'AA:','SUBS'=>'Subs:','NOTES'=>'Notes:'}
     if cmd==nil
        # loop through each column and check that is has data.
        default.each do |k,v|
