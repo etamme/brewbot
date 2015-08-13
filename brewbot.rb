@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'cinch'
 require './nick.rb'
-require './gdyeast.rb'
-require './gdhops.rb'
-require './ratebeer.rb'
+#require './gdyeast.rb'
+#require './gdhops.rb'
+require './untappdSearch.rb'
 require './ping.rb'
 require './slap.rb'
 require './weather.rb'
@@ -15,10 +15,10 @@ require './twitter.rb'
 bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
-    c.channels = ["#homebrewtalk.com"]
-#    c.channels = ["#brewbottest"]
+#    c.channels = ["#homebrewtalk.com"]
+    c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [Ratebeer,Ping,Slap,Weather,Tinyurl,Nick,GDYeast,GDHops,Seen,Convert]
+    c.plugins.plugins = [UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert]#,GDYeast,GDHops]
   end
 
   on :message, "!help" do |m|
