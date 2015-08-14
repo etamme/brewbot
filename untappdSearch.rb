@@ -23,8 +23,9 @@ class UntappdSearch
   
   def getURL(node, params)
     urls = {
+      "beer"        => "https://untappd.com/b",
       "beer_search" => "https://api.untappd.com/v4/search/beer",
-      "beer_score"  => "https://api.untappd.com/v4/beer/info/"
+      "beer_score"  => "https://api.untappd.com/v4/beer/info"
     }
     url = urls[node]
     query = "?client_id=#{@id}&client_secret=#{@secret}"
@@ -33,8 +34,12 @@ class UntappdSearch
         params.each do |param,value|
           query = query + "&#{param}=#{value}"
         end
+    elsif(params.is_a?(Array))
+      params.each do |value|
+        url = "#{url}/#{value}"
+      end
     else
-      url = url + params
+      url = "#{url}/#{params}"
     end
     
     url = url + query
@@ -66,7 +71,15 @@ class UntappdSearch
       
       rating = score["response"]["beer"]["rating_score"]
       
-      m.reply "#{rating.round(2)} for #{result["beer"]["beer_name"]} by #{result["brewery"]["brewery_name"]}"
+      params = [
+        score["response"]["beer"]["beer_slug"],
+        score["response"]["beer"]["bid"]
+      ]
+      link = getURL('beer', params)
+      
+      tinyurl=Net::HTTP.get(URI.parse("http://tinyurl.com/api-create.php?url=#{link}"))
+      
+      m.reply "#{rating.round(2)} for #{result["beer"]["beer_name"]} by #{result["brewery"]["brewery_name"]}, #{tinyurl}"
     end
   end
 end
