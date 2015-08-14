@@ -16,11 +16,11 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.channels = ["#homebrewtalk.com"]
-#    c.channels = ["#brewbottest"]
+    #c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
     c.plugins.plugins = [UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert]#,GDYeast,GDHops]
   end
-
+  
   on :message, "!help" do |m|
     if(m.bot.nick != "homebrewbot" && !m.bot.user_list.find("homebrewbot"))
       m.bot.nick="homebrewbot"
@@ -29,12 +29,12 @@ bot = Cinch::Bot.new do
     @bot.plugins.each do |plugin|
       help = plugin.class.instance_variable_get(:@help)
       if help!=' '
-       @help.push(help)
+        @help.push(help)
       end
     end
-      m.reply @help.join(', ')
+    m.reply @help.join(', ')
   end
-
+  
 end
 
 bot.start
