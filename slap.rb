@@ -6,8 +6,13 @@ class Slap
   include Cinch::Plugin
   @help="!slap"
   match(/slap (.+)/)#,{:use_prefix => false})
+
+  def initialize(*args)
+    super
+    @slaps=YAML::load_file('slap.yaml')
+  end
+
   def execute(m,user)
-    
     slaps = [
       " with a large, wet trout",
       " really fucking hard",
@@ -33,19 +38,21 @@ class Slap
       "'s left butt cheek and yells 'GOOD GAME!'"
     ]
     
+    slap = @slaps.sample
+    
     if user=="lirakis" || user=="gremlyn"
       m.reply "I am programmed not to harm my masters!"
-      m.action_reply "slaps #{m.user.nick} #{slaps.sample}"
+      m.action_reply "slaps #{m.user.nick} #{slap}"
     elsif m.user.nick=="lirakis" || m.user.nick=="gremlyn"
-      m.action_reply "slaps #{user}#{slaps.sample}"
+      m.action_reply "slaps #{user}#{slap}"
     else
       test = rand(10)
       
       if test == 1
-        m.action_reply "slaps #{user}#{slaps.sample}"
+        m.action_reply "slaps #{user}#{slap}"
       else
         m.reply "Sorry, not this time!"
-        m.action_reply "slaps #{m.user.nick}#{slaps.sample}"
+        m.action_reply "slaps #{m.user.nick}#{slap}"
       end
     end
   end
