@@ -9,16 +9,25 @@ class Convert
   
   def initialize(*args)
     super
-    Unit.redefine!("tempC") do |tempC|
-      tempC.display_name = "C"
+    
+    Unit.define("bbl") do |unit|
+      unit.aliases = "barrel"
+      unit.definition = Unit.new('31 gallons')
+      unit.display_name = "bbl"
     end
     
-    Unit.redefine!("tempF") do |tempF|
-      tempF.display_name = "F"
+    Unit.define("beers") do |unit|
+      unit.aliases = %w{bottles beer-bottles}
+      unit.definition = Unit.new('12 floz')
+      unit.display_name = "beer-bottles"
     end
     
-    Unit.redefine!("tempK") do |tempK|
-      tempK.display_name = "K"
+    Unit.redefine!("celsius") do |celsius|
+      celsius.aliases = %w{degC celsius centigrade C}
+    end
+    
+    Unit.redefine!("fahrenheit") do |celsius|
+      celsius.aliases = %w{degF fahrenheit F}
     end
   end
 
