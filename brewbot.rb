@@ -4,8 +4,8 @@ require 'cinch/plugins/dice'
 require 'cinch/plugins/urbandictionary'
 require 'cinch/plugins/downforeveryone'
 require './nick.rb'
-#require './gdyeast.rb'
-#require './gdhops.rb'
+require './yeast.rb'
+require './hops.rb'
 require './untappdSearch.rb'
 require './ping.rb'
 require './slap.rb'
@@ -21,7 +21,7 @@ bot = Cinch::Bot.new do
     c.channels = ["#homebrewtalk.com"]
     #c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone]#,GDYeast,GDHops]
+    c.plugins.plugins = [UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone,Yeast,Hops]
   end
   
   on :message, "!help" do |m|
