@@ -27,7 +27,7 @@ class Hops
       results = JSON.load(response.body)
       
       results.each do |result|
-        m.reply "#{result["name"]} - Origin: #{result["origin"]}; Alpha Acid: #{result["alpha_min"]}-#{result["alpha_max"]}; Aroma: #{result["aroma"]}; Styles: #{result["stykes"]}; Flocculation: #{result["flocculation"]}"
+        m.reply "#{result["name"]} - Origin: #{result["origin"]}; Alpha Acid: #{result["alpha_min"]}-#{result["alpha_max"]}; Aroma: #{result["aroma"]}; Styles: #{result["styles"]}}"
       end
     end
   end
