@@ -3,3 +3,4 @@
 nohup.out
 *~
 !/slap.yaml
+!*.template.yaml
