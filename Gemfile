@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+gem 'cinch'
+gem 'xml-simple'
+gem 'wunderground'
+gem 'ruby-units'
