@@ -23,11 +23,11 @@ class Convert
     end
     
     Unit.redefine!("tempC") do |celsius|
-      celsius.aliases = %w{degC celsius centigrade C}
+      celsius.aliases = %w{tC tempC C}
     end
     
     Unit.redefine!("tempF") do |fahrenheit|
-      fahrenheit.aliases = %w{degF fahrenheit F}
+      fahrenheit.aliases = %w{tF tempF F}
     end
   end
 
