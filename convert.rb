@@ -22,12 +22,12 @@ class Convert
       unit.display_name = "beer-bottles"
     end
     
-    Unit.redefine!("celsius") do |celsius|
+    Unit.redefine!("tempC") do |celsius|
       celsius.aliases = %w{degC celsius centigrade C}
     end
     
-    Unit.redefine!("fahrenheit") do |celsius|
-      celsius.aliases = %w{degF fahrenheit F}
+    Unit.redefine!("tempF") do |fahrenheit|
+      fahrenheit.aliases = %w{degF fahrenheit F}
     end
   end
 

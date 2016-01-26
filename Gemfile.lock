@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.8)
-    cinch (2.2.6)
-    httparty (0.13.5)
+    addressable (2.4.0)
+    cinch (2.3.1)
+    httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.3)
     multi_xml (0.5.5)
-    ruby-units (1.4.5)
+    ruby-units (2.0.0)
     wunderground (1.2.0)
       addressable
       httparty (> 0.6.0)
