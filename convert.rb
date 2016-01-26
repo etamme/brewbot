@@ -21,20 +21,24 @@ class Convert
       unit.definition = Unit.new('12 floz')
       unit.display_name = "beer-bottles"
     end
-    
-    Unit.redefine!("tempC") do |celsius|
-      celsius.aliases = %w{tC tempC C}
-    end
-    
-    Unit.redefine!("tempF") do |fahrenheit|
-      fahrenheit.aliases = %w{tF tempF F}
-    end
   end
 
   def execute(m,convert)
     
     units = convert.split(' to ')
 
+    re = /(\d+(:?\.\d+)?)\s*([CFK])/
+    match = units[0].match re
+    puts match
+    if (match)
+      last = match.captures.length
+      temp = match.captures[0]
+      temp_unit = match.captures[last-1]
+      
+      units[0] = "#{temp} temp#{temp_unit}"
+      units[1] = "temp#{units[1]}"
+    end
+    
     unit0 = Unit.new(units[0])
     if unit0.compatible?(units[1])
       unit1 = unit0 >> units[1]
