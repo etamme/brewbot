@@ -40,7 +40,9 @@ class Yeast
         results = searchYeast(params)
       end
 
-      m.reply "#{results[0]["laboratory"]} #{results[0]["strain"]}: #{results[0]["name"]}; Temperature: #{results[0]["temperature_min"]}-#{results[0]["temperature_max"]}; Attenuation: #{results[0]["attenuation_min"]}-#{results[0]["attenuation_max"]}; Tolerance: #{results[0]["tolerance"]}%; Flocculation: #{results[0]["flocculation"]}"
+      results.each do |result|
+        m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
+      end
     end
   end
 end
