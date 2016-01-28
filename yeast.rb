@@ -39,8 +39,10 @@ class Yeast
         
         results = searchYeast(params)
       end
+      
+      result_set = results.take(5)
 
-      results.each do |result|
+      result_set.each do |result|
         m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
       end
     end
