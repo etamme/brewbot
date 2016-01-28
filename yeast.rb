@@ -40,10 +40,14 @@ class Yeast
         results = searchYeast(params)
       end
       
-      result_set = results.take(5)
-
-      result_set.each do |result|
-        m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
+      if (results.empty?)
+        m.reply "Sorry #{m.user.nick}, no yeast was found matching \"#{yeast}\"."
+      else 
+        result_set = results.take(5)
+      
+        result_set.each do |result|
+          m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
+        end
       end
     end
   end
