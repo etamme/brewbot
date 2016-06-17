@@ -43,10 +43,19 @@ class Yeast
       if (results.empty?)
         m.reply "Sorry #{m.user.nick}, no yeast was found matching \"#{yeast}\"."
       else 
-        result_set = results.take(5)
-      
-        result_set.each do |result|
-          m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
+        if (results.count == 1)
+          results.each do |result|
+            m.reply "#{result["laboratory"]} #{result["strain"]}: #{result["name"]}; Temperature: #{result["temperature_min"]}-#{result["temperature_max"]}; Attenuation: #{result["attenuation_min"]}-#{result["attenuation_max"]}; Tolerance: #{result["tolerance"]}%; Flocculation: #{result["flocculation"]}"
+          end
+        elsif
+          yeast = Array.new
+          
+          results.each do |result|
+            yeast.push("#{result["strain"]} - #{result["name"]}")
+          end
+          
+          m.reply "#{m.user.nick} there are multiple options. Please try again with the strain number:"
+          m.reply yeast.join('; ')
         end
       end
     end
