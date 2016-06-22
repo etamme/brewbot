@@ -50,11 +50,13 @@ class Yeast
         elsif
           yeast = Array.new
           
-          results.each do |result|
+          yeasts = results.take(10)
+          
+          yeasts.each do |result|
             yeast.push("#{result["strain"]} - #{result["name"]}")
           end
           
-          m.reply "#{m.user.nick} there are multiple options. Please try again with the strain number:"
+          m.reply "#{m.user.nick} there are multiple options, here are 10 to choose from. Please try again with the strain number:"
           m.reply yeast.join('; ')
         end
       end
