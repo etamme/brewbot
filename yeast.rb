@@ -52,11 +52,13 @@ class Yeast
           
           yeasts = results.take(10)
           
+          yeast_count = yeasts.count
+          
           yeasts.each do |result|
             yeast.push("#{result["strain"]} - #{result["name"]}")
           end
           
-          m.reply "#{m.user.nick} there are multiple options, here are 10 to choose from. Please try again with the strain number:"
+          m.reply "#{m.user.nick} there are multiple options, here are #{yeast_count} to choose from. Please try again with the strain number:"
           m.reply yeast.join('; ')
         end
       end
