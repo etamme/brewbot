@@ -28,10 +28,23 @@ class Hops
       
       if (results.empty?)
         m.reply "Sorry #{m.user.nick}, no hops were found matching \"#{hops}\"."
-      else
+      elsif (results.count == 1)
         results.each do |result|
           m.reply "#{result["name"]} - Origin: #{result["origin"]}; Alpha Acid: #{result["alpha_min"]}-#{result["alpha_max"]}; Aroma: #{result["aroma"]}; Styles: #{result["styles"]}"
         end
+      else
+        hop = Array.new
+          
+        hops = results.take(10)
+          
+        hop_count = hops.count
+          
+        hops.each do |result|
+          hop.push("#{result["name"]}")
+        end
+          
+        m.reply "#{m.user.nick} there are multiple options, here are #{hop_count} to choose from."
+        m.reply hop.join('; ')
       end
     end
   end
