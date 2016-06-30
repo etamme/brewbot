@@ -32,6 +32,10 @@ class Hops
         results.each do |result|
           m.reply "#{result["name"]} - Origin: #{result["origin"]}; Alpha Acid: #{result["alpha_min"]}-#{result["alpha_max"]}; Aroma: #{result["aroma"]}; Styles: #{result["styles"]}"
         end
+      elsif (results.count == 2 && results[0]['name'] == results[1]['name'])
+        results.each do |result|
+          m.reply "#{result["name"]} - Origin: #{result["origin"]}; Alpha Acid: #{result["alpha_min"]}-#{result["alpha_max"]}; Aroma: #{result["aroma"]}; Styles: #{result["styles"]}"
+        end
       else
         hop = Array.new
           
