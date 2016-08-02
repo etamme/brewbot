@@ -37,17 +37,17 @@ class Slap
       " with the force of 21 tons of TNT",
       "'s left butt cheek and yells 'GOOD GAME!'"
     ]
-    
+
     slap = @slaps.sample
-    
+
     if user=="lirakis" || user=="gremlyn"
       m.reply "I am programmed not to harm my masters!"
       m.action_reply "slaps #{m.user.nick} #{slap}"
     elsif m.user.nick=="lirakis" || m.user.nick=="gremlyn"
       m.action_reply "slaps #{user}#{slap}"
     else
-      test = rand(10)
-      
+      test = rand(5)
+
       if test == 1
         m.action_reply "slaps #{user}#{slap}"
       else
