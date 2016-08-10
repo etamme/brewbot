@@ -6,7 +6,7 @@ require 'open-uri'
 
 class LMGTFY
   include Cinch::Plugin
-  @help="!lmgtfy your query"
+  @help="!lmgtfy"
   match /lmgtfy (.+)/
 
   def execute(m, query)
@@ -19,7 +19,7 @@ class LMGTFY
 
     tinyurl = Net::HTTP.get(URI::parse("http://tinyurl.com/api-create.php?url=#{url}"))
 
-    m.reply tinyurl
+    m.reply "It has been Googled for you: #{tinyurl}"
   end
 
 end
