@@ -32,7 +32,6 @@ bot = Cinch::Bot.new do
     @help=[]
     @bot.plugins.each do |plugin|
       help = plugin.class.instance_variable_get(:@help)
-      puts help
       if !help.nil?
         @help.push(help)
       end
