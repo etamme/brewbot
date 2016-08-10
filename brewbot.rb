@@ -20,9 +20,9 @@ bot = Cinch::Bot.new do
   configure do |c|
     c.server = "irc.freenode.org"
     c.channels = ["#homebrewtalk.com","#r/homebrewing"]
-    #c.channels = ["#brewbottest"]
+    # c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [LMGTFY,UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone,Yeast,Hops]
+    c.plugins.plugins = [Ping,UntappdSearch,Weather,Seen,Convert,Yeast,Hops,Slap,LMGTFY,Tinyurl,Nick,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone]
   end
 
   on :message, "!help" do |m|
@@ -32,7 +32,8 @@ bot = Cinch::Bot.new do
     @help=[]
     @bot.plugins.each do |plugin|
       help = plugin.class.instance_variable_get(:@help)
-      if !help.empty?
+      puts help
+      if !help.nil?
         @help.push(help)
       end
     end
