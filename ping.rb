@@ -4,12 +4,12 @@ require 'cinch'
 
 class Ping
   include Cinch::Plugin
-  @help="."
+  @help="Enter this: ."
   match(/^\.$/,{:use_prefix => false})
   def execute(m)
     if(m.bot.nick != "homebrewbot" && !m.bot.user_list.find("homebrewbot"))
       m.bot.nick="homebrewbot"
     end
-   m.reply ".." 
+   m.reply ".."
   end
 end

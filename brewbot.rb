@@ -14,6 +14,7 @@ require './tinyurl.rb'
 require './seen.rb'
 require './convert.rb'
 require './twitter.rb'
+require './lmgtfy.rb'
 
 bot = Cinch::Bot.new do
   configure do |c|
@@ -21,9 +22,9 @@ bot = Cinch::Bot.new do
     c.channels = ["#homebrewtalk.com","#r/homebrewing"]
     #c.channels = ["#brewbottest"]
     c.nick = "homebrewbot"
-    c.plugins.plugins = [UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone,Yeast,Hops]
+    c.plugins.plugins = [LMGTFY,UntappdSearch,Ping,Slap,Weather,Tinyurl,Nick,Seen,Convert,Cinch::Plugins::Dice,Cinch::Plugins::UrbanDictionary,Cinch::Plugins::DownForEveryone,Yeast,Hops]
   end
-  
+
   on :message, "!help" do |m|
     if(m.bot.nick != "homebrewbot" && !m.bot.user_list.find("homebrewbot"))
       m.bot.nick="homebrewbot"
@@ -37,8 +38,7 @@ bot = Cinch::Bot.new do
     end
     m.reply @help.join(', ')
   end
-  
+
 end
 
 bot.start
-
