@@ -14,7 +14,7 @@ class LMGTFY
       m.bot.nick="homebrewbot"
     end
 
-    url = "http://lmgtfy.com/?q=#{query}"
+    url = "https://www.google.com/search?q=#{query}"
     url = URI::encode(url)
 
     tinyurl = Net::HTTP.get(URI::parse("http://tinyurl.com/api-create.php?url=#{url}"))
