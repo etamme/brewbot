@@ -13,9 +13,10 @@ class Weather
 
   def initialize(*args)
     super
+    curdir = File.dirname(__FILE__);
     # load config from yaml file
     @weather_config=[]
-    File.open('weather.yaml','r').each do |object|
+    File.open("#{curdir}/weather.yaml",'r').each do |object|
       @weather_config << YAML::load(object)
     end
     @key=@weather_config.first['key']

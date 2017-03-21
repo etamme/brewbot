@@ -8,10 +8,12 @@ class Seen
   include Cinch::Plugin
   @help="!seen"
   match(/(.+)/,{:use_prefix => false})
-  
+
   def initialize(*args)
     super
-    @last=YAML.load_file( 'seen.yaml')
+    curdir = File.dirname(__FILE__);
+
+    @last=YAML.load_file( "#{curdir}/seen.yaml")
     puts "@last is #{@last}"
     if(@last==nil)
       @last={}

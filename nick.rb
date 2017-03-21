@@ -6,12 +6,13 @@ class Nick
 
   include Cinch::Plugin
   @help="!nick"
-  match /nick (.+)/ 
+  match /nick (.+)/
   @nickData={}
   @nameIndex={}
 
   def storeData()
-    File.open("./nickData.yaml", "w") do |file|
+    curdir = File.dirname(__FILE__);
+    File.open("#{curdir}/nickData.yaml", "w") do |file|
       file.puts YAML::dump(@nickData)
       file.puts ""
     end
@@ -22,7 +23,8 @@ class Nick
     dataArray=[]
     @nickData={}
     @nameIndex={}
-    File.open("./nickData.yaml", "r").each do |object|
+    curdir = File.dirname(__FILE__);
+    File.open("#{curdir}/nickData.yaml", "r").each do |object|
       dataArray << YAML::load(object)
     end
     dataArray.each do |hash|
@@ -53,7 +55,7 @@ class Nick
       val=cmd
       cmd='get'
     end
- 
+
     if(cmd=='reload')
       @nickData={}
       @nameIndex={}
@@ -69,7 +71,7 @@ class Nick
           end
         else
           output="Sorry.  I don't know who that is."
-        end 
+        end
       else
         output="Show me yours first. !nick set your name"
       end

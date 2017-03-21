@@ -9,7 +9,8 @@ class Slap
 
   def initialize(*args)
     super
-    @slaps=YAML::load_file('slap.yaml')
+    curdir = File.dirname(__FILE__);
+    @slaps=YAML::load_file("#{curdir}/slap.yaml")
   end
 
   def execute(m,user)
